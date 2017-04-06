@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FirstTrialProject</string>
+    <string name="usavsite">My Site</string>
+
+    <string name="temp_textField">small corner text view</string>
+    <string name="log_in">Log In</string>
+</resources>

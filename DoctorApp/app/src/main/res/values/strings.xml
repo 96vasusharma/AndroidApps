@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Doctor App</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="attempts">Attempts:</string>
+    <string name="registration">Registration</string>
+    <string name="signup_button">Sign up</string>
+    <string name="Loginpage">Log In Page</string>
+    <string name="loginbutton">Log In</string>
+</resources>
