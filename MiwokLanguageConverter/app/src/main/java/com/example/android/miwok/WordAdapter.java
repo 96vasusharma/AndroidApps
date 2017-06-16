@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.R.string.no;
+
 /**
  * Created by Vasu Sharma on 28-08-2016.
  */
@@ -17,7 +19,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
     public WordAdapter(Context context,ArrayList<Word> wordArrayAdapter){
         super(context,0,wordArrayAdapter);
     }
-
 
    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -32,13 +33,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
        Word currentWord = getItem(position);
 
        // Find the TextView in the list_item.xml layout with the ID version_name
-       TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+       TextView defaultTextView =
+               (TextView) listItemView.findViewById(R.id.default_text_view);
        // Get the version name from the current AndroidFlavor object and
        // set this text on the name TextView
        defaultTextView.setText(currentWord.getDefaultTranslation());
 
        // Find the TextView in the list_item.xml layout with the ID version_number
-       TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
+       TextView miwokTextView =
+               (TextView) listItemView.findViewById(R.id.miwok_text_view);
        // Get the version number from the current AndroidFlavor object and
        // set this text on the number TextView
        miwokTextView.setText(currentWord.getMiwokTranslation());

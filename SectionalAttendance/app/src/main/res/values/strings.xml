@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Sectional Attendance</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="plant">PLANT</string>
+    <string name="section">SECTION</string>
+    <string name="shift">SHIFT</string>
+    <string name="date">DATE</string>
+    <string name="getEmployee">GET EMPLOYEE</string>
+    <string name="plant_name">To be provided.</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

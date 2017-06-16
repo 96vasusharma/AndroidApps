@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -39,7 +40,9 @@ public class NumbersActivity extends AppCompatActivity {
 
         // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
         // {@link ListView} will display list items for each {@link Word} in the list.
-        listView.setAdapter(adapter);
+        if (listView != null) {
+            listView.setAdapter(adapter);
+        }
 
 //
 //        Log.v("NumbersActivity","at index 0 the Word is "+words.get(0));

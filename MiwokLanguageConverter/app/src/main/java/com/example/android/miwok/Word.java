@@ -10,6 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by Vasu Sharma on 28-08-2016.
  */
+
 public class Word {
     private String mMiwokTranslation;
     private String mDefaultTranslation ;
