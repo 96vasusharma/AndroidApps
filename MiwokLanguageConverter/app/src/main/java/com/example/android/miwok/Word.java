@@ -1,12 +1,5 @@
 package com.example.android.miwok;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
 /**
  * Created by Vasu Sharma on 28-08-2016.
  */
@@ -14,12 +7,20 @@ import java.util.ArrayList;
 public class Word {
     private String mMiwokTranslation;
     private String mDefaultTranslation ;
+    private int mImageResourceId=0;
+    private int mAudioResourceId;
 //    ArrayList<String> miwokTranslation= new ArrayList<>();
 //    ArrayList<String> defaultTranslation= new ArrayList<>();
-
-    public Word(String miwokTranslation,String defaultTranslation){
+    public Word (String miwokTranslation,String defaultTranslation,int audioId){
+        mMiwokTranslation = miwokTranslation;
+        mDefaultTranslation = defaultTranslation;
+        mAudioResourceId = audioId;
+    }
+    public Word(String miwokTranslation,String defaultTranslation, int imageId,int audioId){
         mMiwokTranslation=miwokTranslation;
         mDefaultTranslation=defaultTranslation;
+        mImageResourceId = imageId;
+        mAudioResourceId = audioId;
     }
 
     public String getMiwokTranslation(){
@@ -30,5 +31,11 @@ public class Word {
         return mDefaultTranslation ;
     }
 
+    public int getAudioResourceId() {
+        return mAudioResourceId;
+    }
 
+    public int getImageResourceId() {
+        return mImageResourceId;
+    }
 }

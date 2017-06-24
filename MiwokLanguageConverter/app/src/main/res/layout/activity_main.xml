@@ -24,10 +24,9 @@
 
     <TextView
         android:id="@+id/numbers"
-        style="@style/CategoryStyle"
+            style="@style/CategoryStyle"
         android:background="@color/category_numbers"
-        android:text="@string/category_numbers"
-        />
+        android:text="@string/category_numbers" />
 
     <TextView
         android:id="@+id/family"

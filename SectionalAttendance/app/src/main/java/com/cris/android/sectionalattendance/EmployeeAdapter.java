@@ -8,41 +8,54 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.R.id.list;
 
 /**
  * Created by Vasu Sharma on 09-06-2017.
  */
 
-public class EmployeeAdapter extends ArrayAdapter<EmployeeRecords> {
+public class EmployeeAdapter extends ArrayAdapter<Employee> {
 
-    public EmployeeAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<EmployeeRecords> objects) {
+    public EmployeeAdapter(@NonNull Context context,
+                           @LayoutRes int resource,
+                           @NonNull ArrayList<Employee> objects) {
         super(context, 0, objects);
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView,
+                        @NonNull ViewGroup parent) {
 
 
         View listItemView = convertView;
         if(listItemView==null){
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,
-                    parent,false);
+            listItemView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.list_item, parent,false);
         }
-        EmployeeRecords currentEmployee = getItem(position);
-        TextView empId = (TextView)listItemView.findViewById(R.id.empId);
+        final Employee currentEmployee = getItem(position);
+//        CheckBox checkBox =(CheckBox)listItemView.findViewById(R.id.present);
+        final CheckBox empId = (CheckBox) listItemView.findViewById(R.id.empId);
         empId.setText(currentEmployee.getmEmpId());
         TextView empName = (TextView)listItemView.findViewById(R.id.empName);
         empName.setText(currentEmployee.getmEmpName());
         TextView empDesignation = (TextView)listItemView.findViewById(R.id.empDesignation);
         empDesignation.setText(currentEmployee.getmEmpDesignation());
 
+        empId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (empId.isChecked()){
+                    currentEmployee.setPresent(true);
+                }
+                else {
+                    currentEmployee.setPresent(false);
+                }
+            }
+        });
         return listItemView;
     }
 }

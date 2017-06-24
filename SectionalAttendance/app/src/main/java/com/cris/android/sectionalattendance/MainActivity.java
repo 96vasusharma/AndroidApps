@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Code starts here.
-        if (savedInstanceState==null)
+        if (savedInstanceState==null)  //this is to check when we rotate the screen and
+                                       //onCreate is called if we have any fragment saved
+                                       //in back stack then onCreate won't execute
         {
 
             Fragment fragment = null;

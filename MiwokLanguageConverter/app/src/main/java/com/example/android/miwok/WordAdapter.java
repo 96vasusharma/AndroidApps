@@ -1,23 +1,27 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-import static android.R.string.no;
 
 /**
  * Created by Vasu Sharma on 28-08-2016.
  */
 public class WordAdapter extends ArrayAdapter<Word> {
-    public WordAdapter(Context context,ArrayList<Word> wordArrayAdapter){
+    int specificColor;
+    MediaPlayer mediaPlayer;
+    public WordAdapter(Context context,ArrayList<Word> wordArrayAdapter,int color){
         super(context,0,wordArrayAdapter);
+        specificColor = color;
     }
 
    @Override
@@ -29,8 +33,32 @@ public class WordAdapter extends ArrayAdapter<Word> {
                    R.layout.list_item, parent, false);
        }
 
+
        // Get the {@link AndroidFlavor} object located at this position in the list
-       Word currentWord = getItem(position);
+       final Word currentWord = getItem(position);
+       //specific picture of each element
+       ImageView imageView =(ImageView)listItemView.findViewById(R.id.image);
+       if(currentWord.getImageResourceId()!=0){
+
+           imageView.setImageResource(currentWord.getImageResourceId());
+
+       }
+       else {
+            imageView.setVisibility(View.GONE);
+       }
+
+        //specific audio of each element
+        ImageView audio = (ImageView)listItemView.findViewById(R.id.play_button);
+        audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer= MediaPlayer.create(v.getContext(),
+                        currentWord.getAudioResourceId());
+                mediaPlayer.start();
+
+            }
+        });
+
 
        // Find the TextView in the list_item.xml layout with the ID version_name
        TextView defaultTextView =
@@ -54,6 +82,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
        // Return the whole list item layout (containing 2 TextViews and an ImageView)
        // so that it can be shown in the ListView
+
+
+       // Set the theme color for the list item
+       View textContainer = listItemView.findViewById(R.id.variableBackground);
+       // Find the color that the resource ID maps to
+       int color = ContextCompat.getColor(getContext(), specificColor);
+       // Set the background color of the text container View
+       textContainer.setBackgroundColor(color);
+
        return listItemView;
     }
 }

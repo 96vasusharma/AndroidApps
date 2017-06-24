@@ -25,6 +25,10 @@ public class EmployeeForm extends Fragment {
     Spinner shift;
     TextView plant;
     Spinner section;
+//    ApplicationClass applicationClass =(ApplicationClass)getContext().getApplicationContext();
+//    Spinner shift=applicationClass.getShift();
+//    TextView plant=applicationClass.getPlant();
+//    Spinner section=applicationClass.getSection();
     public static Fragment newInstance(Context context){
         return new EmployeeForm();
 
@@ -42,6 +46,7 @@ public class EmployeeForm extends Fragment {
 //        Button form_sumbit = (Button)viewGroup.findViewById(R.id.form_sumbit);
 //        MainActivity.plantName = plant.getText().toString();
 //        MainActivity.sectionName = .getText().toString();
+
         shift = (Spinner)viewGroup.findViewById(R.id.shiftSelector);
         String shifts[] = {"Morning","Evening","Night","General"};
         ArrayAdapter<String> arrayShift = new
@@ -50,7 +55,8 @@ public class EmployeeForm extends Fragment {
         shift.setAdapter(arrayShift);
         shift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView,
+                                       View view, int i, long l) {
                 MainActivity.shiftName = (String)adapterView.getItemAtPosition(i);
             }
 
@@ -59,6 +65,7 @@ public class EmployeeForm extends Fragment {
 
             }
         });
+
         section = (Spinner)viewGroup.findViewById(R.id.sectionSelector);
         String sections[] = {"Blcroh","Oldroh","Sickline","Yard"};
         ArrayAdapter<String> arraySection = new
@@ -67,7 +74,8 @@ public class EmployeeForm extends Fragment {
         section.setAdapter(arraySection);
         section.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView,
+                                       View view, int i, long l) {
                 MainActivity.sectionName = (String) adapterView.getItemAtPosition(i);
             }
 
@@ -77,7 +85,7 @@ public class EmployeeForm extends Fragment {
             }
         });
         plant = (TextView) viewGroup.findViewById(R.id.plantName);
-        shift = (Spinner)viewGroup.findViewById(R.id.shiftSelector);
+
         Button formSubmit = (Button)viewGroup.findViewById(R.id.form_sumbit);
         formSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,10 +100,12 @@ public class EmployeeForm extends Fragment {
                     e.printStackTrace();
                 }
                 FragmentManager fragmentManager =
-                        getActivity().getSupportFragmentManager();  //getActivity as we are dealing with frame
+                        getActivity().getSupportFragmentManager();  //getActivity as we
+                // are dealing with fragment
 
 
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentTransaction fragmentTransaction =
+                        fragmentManager.beginTransaction();
 
                 fragmentTransaction.replace(R.id.frame,fragment);
                 fragmentTransaction.addToBackStack(null);
