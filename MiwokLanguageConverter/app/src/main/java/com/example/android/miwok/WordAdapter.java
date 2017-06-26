@@ -48,16 +48,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
        }
 
         //specific audio of each element
-        ImageView audio = (ImageView)listItemView.findViewById(R.id.play_button);
-        audio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer= MediaPlayer.create(v.getContext(),
-                        currentWord.getAudioResourceId());
-                mediaPlayer.start();
-
-            }
-        });
+//        ImageView audio = (ImageView)listItemView.findViewById(R.id.play_button);
+//        audio.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mediaPlayer= MediaPlayer.create(v.getContext(),
+//                        currentWord.getAudioResourceId());
+//                mediaPlayer.start();
+//
+//            }
+//        });
 
 
        // Find the TextView in the list_item.xml layout with the ID version_name

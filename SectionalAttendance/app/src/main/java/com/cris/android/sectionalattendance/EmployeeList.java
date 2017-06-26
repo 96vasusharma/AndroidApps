@@ -53,6 +53,8 @@ public class EmployeeList extends Fragment {
 
 
 
+
+
         final EmployeeAdapter employee = new
                 EmployeeAdapter(viewGroup.getContext(),
                 R.layout.list_item,arrayList);

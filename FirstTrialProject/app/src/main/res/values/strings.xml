@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstTrialProject</string>
+    <string name="app_name">ActivityLifecycles</string>
     <string name="usavsite">My Site</string>
 
     <string name="temp_textField">small corner text view</string>

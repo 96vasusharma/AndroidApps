@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String mobilePhones=String.valueOf(adapterView.getItemAtPosition(i));
+                //can use String.valueOf
+
+                String mobilePhones=(String)(adapterView.getItemAtPosition(i));
                 Toast.makeText(MainActivity.this,mobilePhones,Toast.LENGTH_SHORT).show();
             }
         });

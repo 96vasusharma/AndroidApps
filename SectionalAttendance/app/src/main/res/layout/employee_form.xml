@@ -1,134 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-
+    android:layout_marginTop="40dp"
     >
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/shift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignLeft="@+id/section"
+        android:layout_alignStart="@+id/section"
+        android:layout_below="@+id/section"
+        android:layout_marginTop="44dp"
+        android:fontFamily="casual"
+        android:text="@string/shift"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/shift"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/section"
-            android:layout_alignStart="@+id/section"
-            android:layout_below="@+id/section"
-            android:layout_marginTop="44dp"
-            android:fontFamily="casual"
-            android:text="@string/shift"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/shift"
+        android:layout_alignStart="@+id/shift"
+        android:layout_below="@+id/shift"
+        android:layout_marginTop="44dp"
+        android:fontFamily="casual"
+        android:text="@string/date"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/shift"
-            android:layout_alignStart="@+id/shift"
-            android:layout_below="@+id/shift"
-            android:layout_marginTop="44dp"
-            android:fontFamily="casual"
-            android:text="@string/date"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/plant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="61dp"
+        android:fontFamily="casual"
+        android:text="@string/plant"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/plant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="61dp"
-            android:fontFamily="casual"
-            android:text="@string/plant"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/plant"
+        android:layout_alignStart="@+id/plant"
+        android:layout_below="@+id/plant"
+        android:layout_marginTop="46dp"
+        android:fontFamily="casual"
+        android:text="@string/section"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/section"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/plant"
-            android:layout_alignStart="@+id/plant"
-            android:layout_below="@+id/plant"
-            android:layout_marginTop="46dp"
-            android:fontFamily="casual"
-            android:text="@string/section"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/plantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/plant"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/plant"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:ems="10"
+        android:inputType="textCapWords"
+        android:text="@string/plant_name"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/plantName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/plant"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/plant"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:inputType="textCapWords"
-            android:text="@string/plant_name"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+    <Spinner
+        android:id="@+id/sectionSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/section"
+        android:layout_alignEnd="@+id/plantName"
+        android:layout_alignRight="@+id/plantName"
+        android:layout_alignTop="@+id/section"
+        android:gravity="center"
+        android:layout_alignLeft="@+id/shiftSelector"
+        android:layout_alignStart="@+id/shiftSelector" />
 
-        <Spinner
-            android:id="@+id/sectionSelector"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/section"
-            android:layout_alignEnd="@+id/plantName"
-            android:layout_alignRight="@+id/plantName"
-            android:layout_alignTop="@+id/section"
-            android:gravity="center"
-            android:layout_alignLeft="@+id/shiftSelector"
-            android:layout_alignStart="@+id/shiftSelector" />
+    <Button
+        android:id="@+id/form_sumbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/getEmployee"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
 
-        <Button
-            android:id="@+id/form_sumbit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/getEmployee"
-            android:layout_marginTop="37dp"
-            android:layout_below="@+id/editText"
-            android:layout_centerHorizontal="true" />
+    <Spinner
+        android:id="@+id/shiftSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/shift"
+        android:layout_alignEnd="@+id/plantName"
+        android:layout_alignRight="@+id/plantName"
+        android:layout_alignTop="@+id/shift"
+        android:gravity="center"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
 
-        <Spinner
-            android:id="@+id/shiftSelector"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/shift"
-            android:layout_alignEnd="@+id/plantName"
-            android:layout_alignRight="@+id/plantName"
-            android:layout_alignTop="@+id/shift"
-            android:gravity="center"
-            android:layout_alignLeft="@+id/editText"
-            android:layout_alignStart="@+id/editText" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:onClick="getDate"
+        android:focusable="false"
+        android:layout_alignTop="@+id/date"
+        android:layout_alignRight="@+id/plantName"
+        android:layout_alignEnd="@+id/plantName" />
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:onClick="getDate"
-            android:focusable="false"
-            android:layout_alignTop="@+id/date"
-            android:layout_alignRight="@+id/plantName"
-            android:layout_alignEnd="@+id/plantName" />
-
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

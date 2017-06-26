@@ -14,16 +14,27 @@
         android:layout_height="wrap_content"
         android:name="com.example.vasusharma.fragments.fragmentone"
         android:id="@+id/fragment"
+        tools:layout="@layout/fragmentone"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        tools:layout="@layout/fragmentone" />
+        android:layout_alignRight="@+id/fragment2"
+        android:layout_alignEnd="@+id/fragment2" />
+
+    <Button
+        android:id="@+id/goToFramePage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Want a frame ?"
+        android:layout_below="@+id/fragment"
+        android:layout_centerHorizontal="true" />
 
     <fragment
         android:layout_width="290dp"
-        android:layout_height="290dp"
+        android:layout_height="250dp"
         android:name="com.example.vasusharma.fragments.fragmenttwo"
         android:id="@+id/fragment2"
+        tools:layout="@layout/fragmenttwo"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        tools:layout="@layout/fragmenttwo" />
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>

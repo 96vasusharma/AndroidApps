@@ -15,7 +15,8 @@ public class fragmenttwo extends Fragment{
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragmenttwo,container,false);
         t1=(TextView)view.findViewById(R.id.t1);
         t2=(TextView)view.findViewById(R.id.t2);
