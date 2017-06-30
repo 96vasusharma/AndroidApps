@@ -40,6 +40,8 @@ public class EmployeeAdapter extends ArrayAdapter<Employee> {
 //        CheckBox checkBox =(CheckBox)listItemView.findViewById(R.id.present);
         final CheckBox empId = (CheckBox) listItemView.findViewById(R.id.empId);
         empId.setText(currentEmployee.getmEmpId());
+        empId.setChecked(currentEmployee.isPresent());   // necessary to keep the check status while
+                                                        // re using views.(in case of scrolling)
         TextView empName = (TextView)listItemView.findViewById(R.id.empName);
         empName.setText(currentEmployee.getmEmpName());
         TextView empDesignation = (TextView)listItemView.findViewById(R.id.empDesignation);

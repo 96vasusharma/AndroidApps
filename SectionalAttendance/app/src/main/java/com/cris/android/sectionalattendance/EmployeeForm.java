@@ -1,8 +1,11 @@
 package com.cris.android.sectionalattendance;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,8 +17,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
+
+import static android.R.id.edit;
 
 /**
  * Created by Vasu Sharma on 08-06-2017.
@@ -26,14 +36,39 @@ public class EmployeeForm extends Fragment {
     TextView plant;
     Spinner section;
 //    ApplicationClass applicationClass =(ApplicationClass)getContext().getApplicationContext();
-//    Spinner shift=applicationClass.getShift();
+//    Spinner shift=applicationClass. getShift();
 //    TextView plant=applicationClass.getPlant();
 //    Spinner section=applicationClass.getSection();
     public static Fragment newInstance(Context context){
         return new EmployeeForm();
 
     }
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+        EditText editId;
 
+
+        public void setEditId(EditText editId){
+            this.editId = editId;
+        }
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+
+            editId.setText(day+"/"+(month+1)+"/"+year);
+        }
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -47,6 +82,28 @@ public class EmployeeForm extends Fragment {
 //        MainActivity.plantName = plant.getText().toString();
 //        MainActivity.sectionName = .getText().toString();
 
+        final EditText selectDate = (EditText) viewGroup.findViewById(R.id.getDate);
+        selectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerFragment dpf = new DatePickerFragment();
+                dpf.setEditId(selectDate);
+                DialogFragment dialogFragment = dpf;
+                dialogFragment.show(getFragmentManager(),"datePicker");
+
+            }
+        });
+        ImageView img =(ImageView)viewGroup.findViewById(R.id.getDate2);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerFragment dpf2 = new DatePickerFragment();
+                dpf2.setEditId(selectDate);
+                DialogFragment dialogFragment = dpf2;
+                dialogFragment.show(getFragmentManager(),"datePicker");
+
+            }
+        });
         shift = (Spinner)viewGroup.findViewById(R.id.shiftSelector);
         String shifts[] = {"Morning","Evening","Night","General"};
         ArrayAdapter<String> arrayShift = new
@@ -91,7 +148,7 @@ public class EmployeeForm extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment fragment = null;
+                Fragment fragment = null;    //fragment should be initialized as null
                 Class fragmentClass = EmployeeList.class;
                 try{
                     fragment = (Fragment)fragmentClass.newInstance();

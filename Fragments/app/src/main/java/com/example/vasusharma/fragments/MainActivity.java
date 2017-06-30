@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements fragmentone.it_is
         goTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,Frame.class);
+                Intent i = new Intent(MainActivity.this,FrameBackground.class);
                 startActivity(i);
             }
         });

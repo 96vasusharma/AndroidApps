@@ -15,7 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Frame">
+        <activity android:name=".FrameBackground">
+
+        </activity>
+        <activity android:name=".ExampleActivity">
 
         </activity>
     </application>

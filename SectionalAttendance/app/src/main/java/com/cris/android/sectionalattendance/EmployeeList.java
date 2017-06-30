@@ -42,14 +42,16 @@ public class EmployeeList extends Fragment {
         TextView shift_name =(TextView)viewGroup.findViewById(R.id.shift_name);
         ListView listView = (ListView)viewGroup.findViewById(R.id.records);
         final ArrayList<Employee> arrayList = new ArrayList<>();
-        arrayList.add(new Employee("rid","rahul","desig."));
-        arrayList.add(new Employee("sid","sarvesh","desig."));
-        arrayList.add(new Employee("tid","tanuj","desig."));
-        arrayList.add(new Employee("hid","hemant","desig."));
-        arrayList.add(new Employee("cid","cira","desig."));
-        arrayList.add(new Employee("vid","vishal","desig."));
-        arrayList.add(new Employee("aid","abhishek","desig."));
-        arrayList.add(new Employee("bid","bharat","desig."));
+        arrayList.add(new Employee("101","Cira","SSE"));
+        arrayList.add(new Employee("102","Sarvesh","SSE INCH"));
+        arrayList.add(new Employee("103","Tanuj","Technician-I"));
+        arrayList.add(new Employee("104","Hemant","Technician-II"));
+        arrayList.add(new Employee("105","Abhishek","Technician-III"));
+        arrayList.add(new Employee("106","Vishal","Welder-I"));
+        arrayList.add(new Employee("107","Shaurya","Welder-II"));
+        arrayList.add(new Employee("108","Rahul","Painter-I"));
+        arrayList.add(new Employee("109","Bharat","Painter-II"));
+        arrayList.add(new Employee("110","Tanmay","MCM"));
 
 
 

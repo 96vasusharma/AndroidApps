@@ -57,7 +57,10 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
-            am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         //array of numbers in english
         //String[] words= new String[10];
 

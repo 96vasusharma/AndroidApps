@@ -60,6 +60,8 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         //array of numbers in english
@@ -140,6 +142,7 @@ public class NumbersActivity extends AppCompatActivity {
 //        ListView listView = (ListView) findViewById(R.id.list);
 //
 //        listView.setAdapter(itemsAdapter);
+
     }
 
     private void releaseMediaPlayer() {

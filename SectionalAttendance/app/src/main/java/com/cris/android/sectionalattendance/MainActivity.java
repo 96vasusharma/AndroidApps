@@ -22,7 +22,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final String TAG = "important";
-//    public static String plantName="To be provided";
+    //    public static String plantName="To be provided";
     public static String sectionName;
     public static String shiftName;
 
@@ -52,29 +52,28 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Code starts here.
-        if (savedInstanceState==null)  //this is to check when we rotate the screen and
-                                       //onCreate is called if we have any fragment saved
-                                       //in back stack then onCreate won't execute
+        if (savedInstanceState == null)  //this is to check when we rotate the screen and
+        //onCreate is called if we have any fragment saved
+        //in back stack then onCreate won't execute
         {
 
             Fragment fragment = null;
             Class fragmentClass = EmployeeForm.class;
-            try{
-                fragment = (Fragment)fragmentClass.newInstance();
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            fragmentTransaction.replace(R.id.frame,fragment);
+            fragmentTransaction.replace(R.id.frame, fragment);
 //        fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
 
     }
-
 
 
     @Override
@@ -88,10 +87,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack();
     }
-
-
-
-
 
 
     @Override
@@ -140,7 +135,4 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void getDate(View view) {
-        Log.i(TAG,"date pressed");
-    }
 }
