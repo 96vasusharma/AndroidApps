@@ -2,6 +2,7 @@ package com.example.android.miwoklanguageconverter2;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +19,14 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
     int specificColor;
     MediaPlayer mediaPlayer;
-    public WordAdapter(Context context, ArrayList<Word> wordArrayAdapter, int color){
+    public WordAdapter(Context context, ArrayList<Word> wordArrayAdapter
+            , int color){
         super(context,0,wordArrayAdapter);
         specificColor = color;
     }
-
+    @NonNull
    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView,@NonNull ViewGroup parent) {
        // Check if the existing view is being reused, otherwise inflate the view
        View listItemView = convertView;
        if(listItemView == null) {
