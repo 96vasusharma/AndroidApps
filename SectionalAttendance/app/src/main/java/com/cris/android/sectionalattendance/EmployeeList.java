@@ -1,6 +1,7 @@
 package com.cris.android.sectionalattendance;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,14 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static android.location.Geocoder.isPresent;
 import static android.media.CamcorderProfile.get;
 
 /**
@@ -23,7 +22,7 @@ import static android.media.CamcorderProfile.get;
  */
 
 public class EmployeeList extends Fragment {
-    Button button;
+    Button attendance,fromInternet;
 
     public static Fragment newInstance(Context context){
         return new EmployeeList();
@@ -37,12 +36,13 @@ public class EmployeeList extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         final View viewGroup = inflater.inflate(R.layout.employees_list,
                 container,false);
-        button = (Button)viewGroup.findViewById(R.id.submitAttendance);
+        attendance = (Button)viewGroup.findViewById(R.id.submitAttendance);
+        fromInternet = (Button)viewGroup.findViewById(R.id.from_internet);
         TextView section_name =(TextView)viewGroup.findViewById(R.id.section_name);
         TextView shift_name =(TextView)viewGroup.findViewById(R.id.shift_name);
         ListView listView = (ListView)viewGroup.findViewById(R.id.records);
         final ArrayList<Employee> arrayList = new ArrayList<>();
-        arrayList.add(new Employee("101","Cira","SSE"));
+        arrayList.add(new Employee("101","Kira","SSE"));
         arrayList.add(new Employee("102","Sarvesh","SSE INCH"));
         arrayList.add(new Employee("103","Tanuj","Technician-I"));
         arrayList.add(new Employee("104","Hemant","Technician-II"));
@@ -58,8 +58,7 @@ public class EmployeeList extends Fragment {
 
 
         final EmployeeAdapter employee = new
-                EmployeeAdapter(viewGroup.getContext(),
-                R.layout.list_item,arrayList);
+                EmployeeAdapter(viewGroup.getContext(),arrayList);
         listView.setAdapter(employee);
         section_name.setText(MainActivity.sectionName);
         shift_name.setText(MainActivity.shiftName);
@@ -80,7 +79,7 @@ public class EmployeeList extends Fragment {
 //            }
 //        });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ArrayList<Employee> selectedEmployees = new ArrayList<>();
@@ -90,13 +89,19 @@ public class EmployeeList extends Fragment {
                         selectedEmployees.add(e);
                     }
                 }
-
+                StringBuilder stringBuilder = new StringBuilder("These guys are present :\n\n");
+                if (selectedEmployees.isEmpty()){
+                    stringBuilder.append("No One is present:|");
+                }
                 for(int x=0;x<selectedEmployees.size();x++){
 //                    Log.i("important",selectedEmployees.get(x).getmEmpName());
-                    Toast.makeText(view.getContext(),
-                            selectedEmployees.get(x).getmEmpName(),
-                            Toast.LENGTH_SHORT).show();
+
+//                              Toast.makeText(view.getContext(),
+//                            selectedEmployees.get(x).getmEmpName(),
+//                            Toast.LENGTH_SHORT).show();
+                    stringBuilder.append(selectedEmployees.get(x).getmEmpName()+"\n");
                 }
+                Toast.makeText(getActivity(), stringBuilder, Toast.LENGTH_LONG).show();
 //                employee.getView()
 //                int s = arrayList.size();
 //                Log.i("important", "present: "+index);
@@ -112,6 +117,13 @@ public class EmployeeList extends Fragment {
 //
 //                }
 
+            }
+        });
+        fromInternet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),EmployeeJson.class);
+                startActivity(intent);
             }
         });
         return viewGroup;

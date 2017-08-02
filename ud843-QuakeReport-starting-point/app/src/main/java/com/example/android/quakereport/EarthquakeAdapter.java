@@ -31,7 +31,7 @@ import static com.example.android.quakereport.R.id.magnitude;
 class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
     private Context context;
     private static final String LOCATION_SEPARATOR = " of ";
-     EarthquakeAdapter(@NonNull  Context context, @LayoutRes int resource,
+     EarthquakeAdapter(@NonNull  Context context,
                              @NonNull List<Earthquake> objects) {
         super(context, 0 , objects);
         this.context = context;

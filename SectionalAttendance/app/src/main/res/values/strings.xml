@@ -9,5 +9,6 @@
     <string name="date">DATE</string>
     <string name="getEmployee">GET EMPLOYEE</string>
     <string name="plant_name">BS1</string>
+    <string name="NoInternet">No Internet</string>
 
 </resources>

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class EmployeeAdapter extends ArrayAdapter<Employee> {
 
     public EmployeeAdapter(@NonNull Context context,
-                           @LayoutRes int resource,
                            @NonNull ArrayList<Employee> objects) {
         super(context, 0, objects);
     }

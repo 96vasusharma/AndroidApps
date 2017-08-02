@@ -20,7 +20,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+{
     public static final String TAG = "important";
     //    public static String plantName="To be provided";
     public static String sectionName;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             fragmentTransaction.replace(R.id.frame, fragment);
-//        fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
 
-        //back stack
+        //pop back stack
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack();
     }
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up attendance, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frame,new EmployeeList());
-            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
 

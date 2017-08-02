@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="60dp">
+    android:layout_marginTop="60dp"
+    >
 
 
     <LinearLayout
@@ -110,22 +111,37 @@
     </LinearLayout>
     <ListView
         android:id="@+id/records"
-        android:layout_below="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="320dp"
+        android:fadeScrollbars="false"
         android:background="@android:color/darker_gray"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
-        android:nestedScrollingEnabled="true"/>
+        android:nestedScrollingEnabled="true"
+        android:layout_margin="11dp"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/submitAttendance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Attendance"
+    <LinearLayout
         android:layout_below="@+id/records"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="25dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/submitAttendance"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Attendance of these \nemployees"
+            android:layout_margin="10dp"
+            />
+        <Button
+            android:id="@+id/from_internet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Get employees data \nfrom internet" />
+
+    </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
