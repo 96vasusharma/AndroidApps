@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -83,7 +84,14 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
+                getFragmentManager().popBackStack();
+                Toast.makeText(this, "pop back stack done", Toast.LENGTH_SHORT).show();
+
+            } else {
+                super.onBackPressed();
+            }
         }
 
         //pop back stack
@@ -137,7 +145,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frame,new EmployeeList());
-//            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
 

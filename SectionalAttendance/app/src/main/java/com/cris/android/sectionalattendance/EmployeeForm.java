@@ -108,7 +108,7 @@ public class EmployeeForm extends Fragment {
         String shifts[] = {"Morning","Evening","Night","General"};
         ArrayAdapter<String> arrayShift = new
                 ArrayAdapter<String>(viewGroup.getContext(),
-                android.R.layout.simple_list_item_1,shifts);
+                R.layout.spinner_layout,shifts);
         shift.setAdapter(arrayShift);
         shift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,7 +127,7 @@ public class EmployeeForm extends Fragment {
         String sections[] = {"Blcroh","Oldroh","Sickline","Yard"};
         ArrayAdapter<String> arraySection = new
                 ArrayAdapter<String>(viewGroup.getContext(),
-                android.R.layout.simple_list_item_1, sections);
+                R.layout.spinner_layout, sections);
         section.setAdapter(arraySection);
         section.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

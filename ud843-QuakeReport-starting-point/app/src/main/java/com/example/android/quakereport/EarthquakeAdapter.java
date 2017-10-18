@@ -31,8 +31,7 @@ import static com.example.android.quakereport.R.id.magnitude;
 class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
     private Context context;
     private static final String LOCATION_SEPARATOR = " of ";
-     EarthquakeAdapter(@NonNull  Context context,
-                             @NonNull List<Earthquake> objects) {
+     EarthquakeAdapter(@NonNull  Context context,@NonNull List<Earthquake> objects) {
         super(context, 0 , objects);
         this.context = context;
 
@@ -40,10 +39,12 @@ class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView,
+                        @NonNull ViewGroup parent) {
         View listItemView = convertView;
         if (listItemView == null){
-            listItemView = LayoutInflater.from(context).inflate(R.layout.earthquake_list_item,
+            listItemView = LayoutInflater.from(context)
+                    .inflate(R.layout.earthquake_list_item,
                     parent,false);
         }
         final Earthquake currentEarthquake = getItem(position);

@@ -92,7 +92,7 @@ public class EmployeeList extends Fragment {
                 }
                 StringBuilder stringBuilder = new StringBuilder("These guys are present :\n\n");
                 if (selectedEmployees.isEmpty()){
-                    stringBuilder.append("No One is present:|");
+                    stringBuilder.append("No One is present:|\n");
                 }
                 for(int x=0;x<selectedEmployees.size();x++){
 //                    Log.i("important",selectedEmployees.get(x).getmEmpName());
