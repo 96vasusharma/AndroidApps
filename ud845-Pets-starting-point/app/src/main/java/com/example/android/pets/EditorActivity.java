@@ -15,8 +15,9 @@
  */
 package com.example.android.pets;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.android.pets.data.PetDbHelper;
 import com.example.android.pets.data.PetsContract;
 import com.example.android.pets.data.PetsContract.PetsEntry;
+
+import static android.content.ContentUris.parseId;
 
 /**
  * Allows user to create a new pet or edit an existing one.
@@ -113,8 +115,8 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
     private void savePet(){
-        PetDbHelper petDbHelper = new PetDbHelper(this);
-        SQLiteDatabase sqLiteDatabase = petDbHelper.getWritableDatabase();
+//        PetDbHelper petDbHelper = new PetDbHelper(this);
+//        SQLiteDatabase sqLiteDatabase = petDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(PetsContract.PetsEntry.COLUMN_NAME ,
                 mNameEditText.getText().toString().trim());
@@ -123,9 +125,15 @@ public class EditorActivity extends AppCompatActivity {
         values.put(PetsContract.PetsEntry.COLUMN_GENDER , mGender);
         values.put(PetsContract.PetsEntry.COLUMN_WEIGHT ,
                 Integer.parseInt(mWeightEditText.getText().toString().trim()));
-        long newRowId=sqLiteDatabase.insert(PetsContract.PetsEntry.TABLE_NAME,null,values);
-        Log.v("EditorActivity","Row id ="+newRowId);
-        Toast.makeText(this, (newRowId != -1) ? "Pet inserted with id=" + newRowId : "Error saving"
+
+//        long newRowId=sqLiteDatabase.insert(PetsContract.PetsEntry.TABLE_NAME,null,values);
+
+        Uri newUri = getContentResolver().insert(PetsEntry.CONTENT_URI,
+                values);
+//        Log.v("EditorActivity","Row id ="+ContentUris.parseId(newUri));
+        Toast.makeText(this, (newUri != null) ?
+                        getString(R.string.editor_insert_pet_successful) :
+                        getString(R.string.editor_insert_pet_failed)
                 , Toast.LENGTH_SHORT).show();
 
     }

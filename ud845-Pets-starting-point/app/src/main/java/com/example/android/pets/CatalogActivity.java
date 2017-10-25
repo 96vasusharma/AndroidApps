@@ -15,10 +15,11 @@
  */
 package com.example.android.pets;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -27,16 +28,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.android.pets.data.PetDbHelper;
 import com.example.android.pets.data.PetsContract;
+
+import static android.content.ContentUris.parseId;
 
 
 /**
  * Displays list of pets that were entered and stored in the app.
  */
 public class CatalogActivity extends AppCompatActivity {
-    private PetDbHelper petDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,6 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
-        petDbHelper = new PetDbHelper(this);
 //        displayDatabaseInfo();
 
 
@@ -63,8 +64,7 @@ public class CatalogActivity extends AppCompatActivity {
         // and pass the context, which is the current activity.
 
 
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = petDbHelper.getReadableDatabase();
+
 
         // Perform this raw SQL query "SELECT * FROM pets"
         // to get a Cursor that contains all rows from the pets table.
@@ -79,16 +79,24 @@ public class CatalogActivity extends AppCompatActivity {
 //        String selection;
 //        String [] selectionArgs;
 
-        Cursor cursor = db.query(PetsContract.PetsEntry.TABLE_NAME,
+//        Cursor cursor = db.rawQuery("SELECT * FROM " +
+//                PetsContract.PetsEntry.TABLE_NAME, null);
+
+        /*Cursor cursor = db.query(PetsContract.PetsEntry.TABLE_NAME,
                 projection,
                 null,
                 null,
                 null,
                 null,
                 null);
+        */
 
-//        Cursor cursor = db.rawQuery("SELECT * FROM " +
-//                PetsContract.PetsEntry.TABLE_NAME, null);
+        Cursor cursor = getContentResolver().query(PetsContract.PetsEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
+                null
+                );
 
         TextView displayView = (TextView) findViewById(R.id.text_view_pet);
 
@@ -123,15 +131,18 @@ public class CatalogActivity extends AppCompatActivity {
         }
     }
     private void insertDummyPet(){
-        SQLiteDatabase sqLiteDatabase = petDbHelper.getWritableDatabase();
+//        SQLiteDatabase sqLiteDatabase = petDbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(PetsContract.PetsEntry.COLUMN_NAME,"Rocky");
         cv.put(PetsContract.PetsEntry.COLUMN_BREED,"German Shepherd");
         cv.put(PetsContract.PetsEntry.COLUMN_GENDER,
                 PetsContract.PetsEntry.GENDER_MALE);
         cv.put(PetsContract.PetsEntry.COLUMN_WEIGHT,34);
-        long newRowId = sqLiteDatabase.insert(PetsContract.PetsEntry.TABLE_NAME,null,cv);
-        Log.v("CatalogActivity","Row id = "+newRowId);
+
+//        long newRowId = sqLiteDatabase.insert(PetsContract.PetsEntry.TABLE_NAME,null,cv);
+        Uri newUri = getContentResolver().insert(PetsContract.PetsEntry.CONTENT_URI,
+                cv);
+//        Log.v("CatalogActivity","Row id = "+newRowId);
     }
 
     @Override
@@ -162,6 +173,11 @@ public class CatalogActivity extends AppCompatActivity {
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
                 // Do nothing for now
+//                int rowsDeleted =
+//                        getContentResolver().delete(PetsContract.PetsEntry.CONTENT_URI,
+//                        null,null);
+////                Toast.makeText(getApplicationContext(), rowsDeleted, Toast.LENGTH_SHORT).show();
+//                displayDatabaseInfo();
                 return true;
         }
         return super.onOptionsItemSelected(item);
