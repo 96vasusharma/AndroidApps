@@ -60,4 +60,24 @@
     <string name="gender_female">Female</string>
     <string name="editor_insert_pet_successful">Pet saved</string>
     <string name="editor_insert_pet_failed">Error with saving pet</string>
+    <string name="empty_title_text">It\'s lonely in here.</string>
+    <string name="empty_subtitle_text">Add a pet</string>
+
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
+
+    <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
+    <string name="keep_editing">Keep Editing</string>
+    <string name="delete_dialog_msg">Delete this pet?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="pet_delete_success_editor">Pet deleted</string>
+    <string name="pet_delete_failed_editor">Error deleting pet</string>
+    <string name="all_pets_delete_success_catalog">All Pets Deleted !</string>
+    <string name="all_pets_delete_failed_catalog">Error deleting all the pets</string>
+    <string name="delete_all_dialog_msg">Delete all the pets?</string>
+    <string name="unknown_breed">Unknown Breed</string>
 </resources>

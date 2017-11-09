@@ -18,11 +18,50 @@
     android:layout_height="match_parent"
     tools:context=".CatalogActivity">
 
-    <TextView
-        android:id="@+id/text_view_pet"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/activity_margin"/>
+        />
+    <RelativeLayout
+        android:id="@+id/noPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+        <ImageView
+            android:id="@+id/emptyShelterImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty_shelter"
+            android:layout_centerHorizontal="true"
+
+            />
+        <TextView
+            android:id="@+id/emptyTitleText"
+            android:layout_below="@id/emptyShelterImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_title_text"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="16dp"
+            android:textAppearance =
+                "?android:textAppearanceMedium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emptyTitleText"
+            android:layout_centerHorizontal="true"
+            android:text="@string/empty_subtitle_text"
+            android:fontFamily="sans-serif"
+            android:paddingTop="8dp"
+            android:textAppearance=
+                "?android:textAppearanceSmall"
+            android:textColor="#A2AAB0"
+            />
+    </RelativeLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

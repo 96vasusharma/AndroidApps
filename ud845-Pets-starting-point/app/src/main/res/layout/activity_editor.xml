@@ -93,8 +93,8 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_measurement"
-            style="@style/CategoryStyle" />
+            style="@style/CategoryStyle"
+            android:text="@string/category_measurement" />
 
         <!-- Input fields -->
         <RelativeLayout

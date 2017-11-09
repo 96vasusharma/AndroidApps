@@ -3,18 +3,17 @@ package com.example.android.pets.data;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+
 import com.example.android.pets.data.PetsContract.PetsEntry;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.w3c.dom.Text;
 
 /**
  * Created by Vasu Sharma on 18-10-2017.
@@ -31,7 +30,8 @@ public class PetProvider extends ContentProvider {
     // Static initializer. This is run the first time anything is called from this class.
     static{
         sUriMatcher.addURI(PetsContract.CONTENT_AUTHORITY,PetsContract.PATH_PETS,PETS);
-        sUriMatcher.addURI(PetsContract.CONTENT_AUTHORITY,PetsContract.PATH_PETS+"/#",PETS_ID);
+        sUriMatcher.addURI(PetsContract.CONTENT_AUTHORITY,
+                PetsContract.PATH_PETS+"/#",PETS_ID);
     }
 
     @Override
@@ -79,6 +79,9 @@ public class PetProvider extends ContentProvider {
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
 
+        //registering for checking of changes in the uri  (data changes)
+        cursor.setNotificationUri(getContext().getContentResolver(),uri);
+
         return cursor;
     }
 
@@ -119,6 +122,9 @@ public class PetProvider extends ContentProvider {
             return null;
         }
 
+        //notify all the listeners that data has changed for pet content uri
+        getContext().getContentResolver().notifyChange(uri,null);
+
         return ContentUris.withAppendedId(uri,rowNumber);
 
     }
@@ -130,11 +136,11 @@ public class PetProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match){
             case PETS:
-                return updatePet(contentValues,selection,selectionArgs);
+                return updatePet(uri,contentValues,selection,selectionArgs);
             case PETS_ID:
                 selection = PetsEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                return updatePet(contentValues,selection,selectionArgs);
+                return updatePet(uri,contentValues,selection,selectionArgs);
 
             default:
                 throw new IllegalArgumentException("Uri inappropriate ");
@@ -142,7 +148,7 @@ public class PetProvider extends ContentProvider {
 
     }
 
-    private int updatePet(ContentValues contentValues , String selection ,
+    private int updatePet(Uri uri,ContentValues contentValues , String selection ,
                           String[] selectionArgs){
 
         if (contentValues.size() == 0) {
@@ -167,9 +173,15 @@ public class PetProvider extends ContentProvider {
                 throw new IllegalArgumentException("Weight of updated pet cannot be -ve");
             }
         }
+
         SQLiteDatabase sqLiteDatabase = petDbHelper.getWritableDatabase();
-        return sqLiteDatabase.update(PetsEntry.TABLE_NAME,contentValues,
+        int rowsUpdated = sqLiteDatabase.update(PetsEntry.TABLE_NAME,contentValues,
                 selection,selectionArgs);
+        if (rowsUpdated>0){
+            //notify all the listeners that data has changed for pet content uri
+            getContext().getContentResolver().notifyChange(uri,null);
+        }
+        return rowsUpdated;
     }
 
 
@@ -179,20 +191,25 @@ public class PetProvider extends ContentProvider {
                       @Nullable String[] selectionArgs) {
         final int match = sUriMatcher.match(uri);
         SQLiteDatabase sqLiteDatabase = petDbHelper.getWritableDatabase();
+        int rowsDeleted;
         switch (match) {
             case PETS:
-                return sqLiteDatabase.delete(PetsEntry.TABLE_NAME, selection,
-                        selectionArgs);
+                rowsDeleted = sqLiteDatabase.delete(PetsEntry.TABLE_NAME, selection,
+                        selectionArgs);break;
             case PETS_ID:
                 selection = PetsEntry._ID + "=?";
                 selectionArgs = new String[]{uri.getLastPathSegment()};
-                return sqLiteDatabase.delete(PetsEntry.TABLE_NAME, selection,
-                        selectionArgs);
+
+                rowsDeleted = sqLiteDatabase.delete(PetsEntry.TABLE_NAME, selection,
+                        selectionArgs);break;
             default:
                 throw new IllegalArgumentException("Inappropriate uri - " + uri);
         }
+        if (rowsDeleted!=0){
+            getContext().getContentResolver().notifyChange(uri,null);
+        }
+        return rowsDeleted;
     }
-
 
 
 
