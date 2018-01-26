@@ -23,7 +23,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-    public static final String TAG = "important";
     //    public static String plantName="To be provided";
     public static String sectionName;
     public static String shiftName;
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity
 
             if (getFragmentManager().getBackStackEntryCount() > 0) {
                 getFragmentManager().popBackStack();
-                Toast.makeText(this, "pop back stack done", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "pop back stack done", Toast.LENGTH_SHORT).show();
 
             } else {
                 super.onBackPressed();
